@@ -18,12 +18,15 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
     public Text nameText;
+    int highScore;
+    public Text bestScoreText;
 
     
     // Start is called before the first frame update
     void Start()
     {
         nameText.text = "Name: " + StartMenu.Instance.playerName;
+        bestScoreText.text = $"Best Score : {PlayerPrefs.GetString("Player")} : {PlayerPrefs.GetInt("HighScore")}";
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -73,6 +76,22 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         m_GameOver = true;
+        if (PlayerPrefs.HasKey("HighScore") && PlayerPrefs.HasKey("Player"))
+        {
+            highScore = PlayerPrefs.GetInt("HighScore");
+            if (m_Points > highScore)
+            {
+                PlayerPrefs.SetInt("HighScore", m_Points);
+                PlayerPrefs.SetString("Player", StartMenu.Instance.playerName);
+                bestScoreText.text = $"Best Score : {StartMenu.Instance.playerName} : {m_Points}";
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("HighScore", m_Points);
+            PlayerPrefs.SetString("Player", StartMenu.Instance.playerName);
+            bestScoreText.text = $"Best Score : {StartMenu.Instance.playerName} : {m_Points}";
+        }
         GameOverText.SetActive(true);
     }
 }

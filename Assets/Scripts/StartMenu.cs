@@ -9,6 +9,7 @@ public class StartMenu : MonoBehaviour
     [SerializeField] InputField nameInputField;
     public static StartMenu Instance;
     public string playerName;
+    public Text bestScoreText;
 
     private void Awake()
     {
@@ -20,6 +21,8 @@ public class StartMenu : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        bestScoreText.text = $"Best Score : {PlayerPrefs.GetString("Player")} : {PlayerPrefs.GetInt("HighScore")}";
     }
 
     public void StartGame()

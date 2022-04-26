@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameInputField: {fileID: 115350515}
   playerName: 
+  bestScoreText: {fileID: 513536355}
 --- !u!4 &55843346
 Transform:
   m_ObjectHideFlags: 0
