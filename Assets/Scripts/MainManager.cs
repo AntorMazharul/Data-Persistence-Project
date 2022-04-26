@@ -17,11 +17,13 @@ public class MainManager : MonoBehaviour
     private int m_Points;
     
     private bool m_GameOver = false;
+    public Text nameText;
 
     
     // Start is called before the first frame update
     void Start()
     {
+        nameText.text = "Name: " + StartMenu.Instance.playerName;
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
